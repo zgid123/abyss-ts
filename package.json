@@ -1,14 +1,22 @@
 {
-  "name": "abyssts",
+  "name": "abyss.ts",
   "version": "0.0.1",
   "author": "Alpha",
   "description": "Node.JS framework bootstrap",
   "repository": {
     "type": "git",
-    "url": "git@github.com:zgid123/abyssts.git"
+    "url": "git@github.com:zgid123/abyss-ts.git"
   },
   "license": "MIT",
-  "keywords": ["abyssts", "node", "express"],
+  "keywords": [
+    "abyss",
+    "abyssts",
+    "abyssjs",
+    "abyss.js",
+    "abyss.ts",
+    "node",
+    "express"
+  ],
   "type": "module",
   "private": true,
   "scripts": {

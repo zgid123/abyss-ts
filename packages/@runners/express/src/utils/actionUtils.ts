@@ -1,4 +1,4 @@
-import { getActionParamMetadata, type IActionParamProps } from '@abyssts/core';
+import { getActionParamMetadata, type IActionParamProps } from '@abyss.ts/core';
 
 import type { Request } from 'express';
 

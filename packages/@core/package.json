@@ -1,16 +1,16 @@
 {
-  "name": "@abyssts/core",
+  "name": "@abyss.ts/core",
   "version": "0.0.1",
   "author": "Alpha",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zgid123/abyssts.git"
+    "url": "git+https://github.com/zgid123/abyss-ts.git"
   },
   "license": "MIT",
   "type": "module",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
-  "keywords": ["abyssts", "node"],
+  "keywords": ["abyss", "abyssts", "abyssjs", "abyss.js", "abyss.ts", "node"],
   "scripts": {
     "prepublish": "pnpm build",
     "build": "tsup",
@@ -22,7 +22,7 @@
     "reflect-metadata": "^0.2.2"
   },
   "devDependencies": {
-    "@abyssts/internal-vitest": "workspace:^",
+    "@abyss.ts/internal-vitest": "workspace:^",
     "@types/glob": "^8.1.0",
     "@types/node": "^20.14.9"
   }

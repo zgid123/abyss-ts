@@ -1,22 +1,30 @@
 {
-  "name": "@abyssts/express-runner",
+  "name": "@abyss.ts/express-runner",
   "version": "0.0.1",
   "author": "Alpha",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zgid123/abyssts.git"
+    "url": "git+https://github.com/zgid123/abyss-ts.git"
   },
   "license": "MIT",
   "type": "module",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
-  "keywords": ["abyssts", "node", "express"],
+  "keywords": [
+    "abyss",
+    "abyssts",
+    "abyssjs",
+    "abyss.js",
+    "abyss.ts",
+    "node",
+    "express"
+  ],
   "scripts": {
     "prepublish": "pnpm build",
     "build": "tsup"
   },
   "dependencies": {
-    "@abyssts/core": "workspace:^",
+    "@abyss.ts/core": "workspace:^",
     "body-parser": "^1.20.2",
     "detect-port": "^1.6.1",
     "express": "^4.19.2"

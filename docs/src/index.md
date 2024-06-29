@@ -2,7 +2,7 @@
 layout: home
 
 hero:
-  name: '@abyssts'
+  name: '@abyss.ts'
   text: A bootstrap for Node.js frameworks
   actions:
     - theme: brand
@@ -10,7 +10,7 @@ hero:
       link: /introduction/getting-started
     - theme: alt
       text: View on GitHub
-      link: https://github.com/zgid123/abyssts
+      link: https://github.com/zgid123/abyss-ts
 features:
   - title: Express
     details: Provides a bootstrap runner for Express

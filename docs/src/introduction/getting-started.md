@@ -5,19 +5,19 @@
 ::: code-group
 
 ```sh [npm]
-npm add @abyssts/express-runner
+npm add @abyss.ts/express-runner
 
 npm add -D tsx
 ```
 
 ```sh [pnpm]
-pnpm add @abyssts/express-runner
+pnpm add @abyss.ts/express-runner
 
 pnpm add -D tsx
 ```
 
 ```sh [yarn]
-yarn add @abyssts/express-runner
+yarn add @abyss.ts/express-runner
 
 yarn add -D tsx
 ```
@@ -29,7 +29,7 @@ yarn add -D tsx
 ```ts
 // src/api/products/ProductController.ts
 
-import { Get, Controller } from '@abyssts/express-runner';
+import { Get, Controller } from '@abyss.ts/express-runner';
 
 @Controller('products')
 export class ProductsController {
@@ -50,7 +50,7 @@ export class ProductsController {
 ```ts
 // src/main.ts
 
-import { ExpressApplication } from '@abyssts/express-runner';
+import { ExpressApplication } from '@abyss.ts/express-runner';
 
 ExpressApplication.create()
   .useBodyParser()
@@ -68,7 +68,7 @@ ExpressApplication.create()
     "dev": "tsx watch src/main.ts"
   },
   "dependencies": {
-    "@abyssts/express-runner": "^0.0.1"
+    "@abyss.ts/express-runner": "^0.0.1"
   },
   "devDependencies": {
     "tsx": "^4.16.0"

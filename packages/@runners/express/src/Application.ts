@@ -7,7 +7,7 @@ import {
   AbyssApplication,
   getControllerMetadata,
   getControllerActionMetadata,
-} from '@abyssts/core';
+} from '@abyss.ts/core';
 
 import { mapParameters } from './utils/actionUtils';
 import { mapController } from './utils/controllerUtils';

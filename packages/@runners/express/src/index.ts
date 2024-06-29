@@ -1,4 +1,4 @@
-export { Controller, Get, Query, Body, Request, Param } from '@abyssts/core';
+export { Controller, Get, Query, Body, Request, Param } from '@abyss.ts/core';
 
 export type { Request as TRequest } from 'express';
 

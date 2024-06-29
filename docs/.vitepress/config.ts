@@ -1,10 +1,10 @@
 import { defineConfig } from 'vitepress';
 
 export default defineConfig({
-  title: '@abyssts',
+  title: '@abyss.ts',
   description: 'A bootstrap for Node.js frameworks.',
   srcDir: './src',
-  base: '/abyssts/',
+  base: '/abyss-ts/',
   themeConfig: {
     nav: [
       {
@@ -17,7 +17,7 @@ export default defineConfig({
         text: 'Introduction',
         items: [
           {
-            text: 'What is @abyssts?',
+            text: 'What is @abyss.ts?',
             link: '/introduction/what-is-it',
           },
           {
@@ -52,7 +52,7 @@ export default defineConfig({
       },
     },
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/zgid123/abyssts' },
+      { icon: 'github', link: 'https://github.com/zgid123/abyss-ts' },
     ],
   },
 });
