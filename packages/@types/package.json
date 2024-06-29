@@ -1,0 +1,6 @@
+{
+  "name": "@types/globals",
+  "type": "module",
+  "main": "./src/index.d.ts",
+  "types": "./src/index.d.ts"
+}
