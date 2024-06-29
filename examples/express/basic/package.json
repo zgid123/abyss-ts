@@ -1,0 +1,15 @@
+{
+  "name": "@example/express-basic",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/main.ts"
+  },
+  "dependencies": {
+    "@abyssts/express-runner": "workspace:^",
+    "nanoid": "^5.0.7"
+  },
+  "devDependencies": {
+    "tsx": "^4.16.0"
+  }
+}
