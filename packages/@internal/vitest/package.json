@@ -1,0 +1,10 @@
+{
+  "name": "@abyssts/internal-vitest",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsup"
+  }
+}
