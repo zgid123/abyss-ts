@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "author": "Alpha",
   "description": "Node.JS framework bootstrap",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:zgid123/abyssts.git"
+  },
   "license": "MIT",
   "keywords": ["abyssts", "node", "express"],
   "type": "module",

@@ -25,6 +25,7 @@ jobs:
           sparse-checkout: |
             .github
             docs
+            packages/@config/tsconfig
             .gitignore
             biome.json
             package.json
