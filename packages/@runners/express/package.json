@@ -1,6 +1,12 @@
 {
   "name": "@abyssts/express-runner",
   "version": "0.0.1",
+  "author": "Alpha",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zgid123/abyssts.git"
+  },
+  "license": "MIT",
   "type": "module",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
