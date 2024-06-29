@@ -1,4 +1,4 @@
-import { configVitest } from '@abyssts/internal-vitest';
+import { configVitest } from '@abyss.ts/internal-vitest';
 
 import type { UserConfigExport } from 'vitest/config';
 

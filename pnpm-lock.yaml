@@ -57,7 +57,7 @@ importers:
 
   examples/express/basic:
     dependencies:
-      '@abyssts/express-runner':
+      '@abyss.ts/express-runner':
         specifier: workspace:^
         version: link:../../../packages/@runners/express
       nanoid:
@@ -79,7 +79,7 @@ importers:
         specifier: ^0.2.2
         version: 0.2.2
     devDependencies:
-      '@abyssts/internal-vitest':
+      '@abyss.ts/internal-vitest':
         specifier: workspace:^
         version: link:../@internal/vitest
       '@types/glob':
@@ -93,7 +93,7 @@ importers:
 
   packages/@runners/express:
     dependencies:
-      '@abyssts/core':
+      '@abyss.ts/core':
         specifier: workspace:^
         version: link:../../@core
       body-parser:

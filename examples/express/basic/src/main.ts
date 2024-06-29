@@ -1,4 +1,4 @@
-import { ExpressApplication } from '@abyssts/express-runner';
+import { ExpressApplication } from '@abyss.ts/express-runner';
 
 ExpressApplication.create()
   .useBodyParser()

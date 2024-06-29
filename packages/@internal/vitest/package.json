@@ -1,5 +1,5 @@
 {
-  "name": "@abyssts/internal-vitest",
+  "name": "@abyss.ts/internal-vitest",
   "version": "0.0.1",
   "type": "module",
   "main": "lib/index.js",

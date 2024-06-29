@@ -6,7 +6,7 @@
     "dev": "tsx watch src/main.ts"
   },
   "dependencies": {
-    "@abyssts/express-runner": "workspace:^",
+    "@abyss.ts/express-runner": "workspace:^",
     "nanoid": "^5.0.7"
   },
   "devDependencies": {

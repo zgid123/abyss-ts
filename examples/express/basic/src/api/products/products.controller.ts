@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import { Get, Query, Request, Controller } from '@abyssts/express-runner';
+import { Get, Query, Request, Controller } from '@abyss.ts/express-runner';
 
 @Controller('products')
 export class ProductsController {

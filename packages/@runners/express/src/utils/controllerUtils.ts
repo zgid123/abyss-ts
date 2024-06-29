@@ -1,4 +1,4 @@
-import { getControllerMetadata, loadControllers } from '@abyssts/core';
+import { getControllerMetadata, loadControllers } from '@abyss.ts/core';
 
 export async function mapController(): Promise<TAny[]> {
   const importedControllers = await loadControllers();
