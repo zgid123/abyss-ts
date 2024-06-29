@@ -12,6 +12,7 @@
   "types": "lib/index.d.ts",
   "keywords": ["abyssts", "node"],
   "scripts": {
+    "prepublish": "pnpm build",
     "build": "tsup",
     "test": "vitest run",
     "test:cov": "vitest run --coverage"
