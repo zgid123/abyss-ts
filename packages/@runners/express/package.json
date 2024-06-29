@@ -12,6 +12,7 @@
   "types": "lib/index.d.ts",
   "keywords": ["abyssts", "node", "express"],
   "scripts": {
+    "prepublish": "pnpm build",
     "build": "tsup"
   },
   "dependencies": {
