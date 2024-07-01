@@ -108,6 +108,9 @@ importers:
       express:
         specifier: ^4.19.2
         version: 4.19.2
+      nanoid:
+        specifier: ^5.0.7
+        version: 5.0.7
     devDependencies:
       '@types/body-parser':
         specifier: ^1.19.5
