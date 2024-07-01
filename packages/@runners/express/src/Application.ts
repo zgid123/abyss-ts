@@ -1,15 +1,12 @@
+import { nanoid } from 'nanoid';
 import bodyParser from 'body-parser';
 import detectPort from 'detect-port';
-import express, { Router, type Express } from 'express';
+import express, { type Express } from 'express';
+import { AbyssApplication } from '@abyss.ts/core';
 import { createServer as createHttpServer } from 'http';
-import {
-  combine,
-  AbyssApplication,
-  getControllerMetadata,
-  getControllerActionMetadata,
-} from '@abyss.ts/core';
 
-import { mapParameters } from './utils/actionUtils';
+import { mapRoutes } from './utils/routeUtils';
+import { mapInjections } from './utils/injectionUtils';
 import { mapController } from './utils/controllerUtils';
 
 export class ExpressApplication extends AbyssApplication<ExpressApplication> {
@@ -40,32 +37,19 @@ export class ExpressApplication extends AbyssApplication<ExpressApplication> {
   }
 
   public async run(): Promise<void> {
+    this.#express.use((req, _res, next) => {
+      Object.assign(req, {
+        executionId: nanoid(),
+      });
+
+      next();
+    });
+
     const controllers = await mapController();
 
-    const routes: string[] = [];
-    const router = Router();
+    mapInjections();
 
-    for (const controller of controllers) {
-      const { route } = getControllerMetadata(controller);
-      const actions = getControllerActionMetadata(controller);
-
-      for (const action of actions) {
-        const { exec, httpMethod, route: actionRoute, propertyKey } = action;
-        const httpRoute = `/${combine({ joinWith: '/' }, route, actionRoute)}`;
-
-        routes.push(httpRoute);
-
-        router[httpMethod](httpRoute, (req, res) => {
-          const params = mapParameters({
-            controller,
-            propertyKey,
-            request: req,
-          });
-
-          res.send(exec(...params));
-        });
-      }
-    }
+    const [routes, router] = mapRoutes(controllers);
 
     this.#express.use(router);
 
@@ -81,7 +65,7 @@ export class ExpressApplication extends AbyssApplication<ExpressApplication> {
     console.log(`Server is running on ${runningPort}`);
 
     if (routes.length) {
-      console.log(`\n\nList routes: \n\n${routes.join('\n')}`);
+      console.log(`\n\nList routes: \n${routes.join('\n')}`);
     }
   }
 }

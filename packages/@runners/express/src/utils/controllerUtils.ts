@@ -1,9 +1,11 @@
 import { getControllerMetadata, loadControllers } from '@abyss.ts/core';
 
 export async function mapController(): Promise<TAny[]> {
+  console.log('Scanning controllers...');
+
   const importedControllers = await loadControllers();
 
-  return importedControllers.reduce((result, module) => {
+  const controllers = importedControllers.reduce((result, module) => {
     const classes = Object.values(module);
 
     for (const klass of classes) {
@@ -18,4 +20,8 @@ export async function mapController(): Promise<TAny[]> {
 
     return result;
   }, []);
+
+  console.log('Finish scanning controllers!\n');
+
+  return controllers;
 }
