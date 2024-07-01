@@ -1,9 +1,17 @@
 # Changelogs
 
+## 0.0.2
+
+- build simple ioc container for di
+
+**Full Changelog**: https://github.com/zgid123/abyss-ts/compare/core@0.0.1...core@0.0.2
+
 ## 0.0.1
 
-- create `AbyssApplication` as abstract Application for all runners
 - create `Controller` decorator to create controller
-- create `http method` decorators to create action for controller
-- create `parameter` decorators to create parameters for action of controller
-- create auto load controllers function
+- create http method decorators: `Get`, `Post`, `Put`, `Patch` and `Delete` to create action for controller
+- create parameter decorator `Query` to inject query param to controller's action
+- create parameter decorator `Body` to inject body param to controller's action
+- create parameter decorator `Param` to inject param (e.g: `/:id`, `id` is a param) to controller's action
+- create parameter decorator `Request` to inject request (e.g: Express's request) to controller's action
+- create Core Application to build runner
