@@ -27,15 +27,30 @@ export default defineConfig({
         ],
       },
       {
+        text: 'Fundamentals',
+        items: [
+          {
+            text: 'Controller',
+            link: '/fundamentals/controller',
+          },
+          {
+            text: 'Dependency Injection',
+            link: '/fundamentals/dependency-injection',
+          },
+        ],
+      },
+      {
         text: 'Changelogs',
         items: [
           {
             text: 'core',
             link: '/changelogs/core',
+            docFooterText: 'Changelogs - core',
           },
           {
             text: 'express-runner',
             link: '/changelogs/express-runner',
+            docFooterText: 'Changelogs - express-runner',
           },
         ],
       },

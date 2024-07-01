@@ -1,6 +1,16 @@
 # Changelogs
 
+## 0.0.2
+
+- export more decorators from core package: `Put`, `Post`, `Patch`, `Delete`, `Inject` and `Injectable`
+- resolve singleton injections and pass to controllers' constructor or other injection classes' constructor
+
+**Full Changelog**: https://github.com/zgid123/abyss-ts/compare/express-runner@0.0.1...express-runner@0.0.2
+
 ## 0.0.1
 
-- create `ExpressApplication` based on `AbyssApplication` to create `Express` app
-- auto load controllers and map to `Express` router
+- export decorators: `Controller`, `Get`, `Query`, `Body`, `Request` and `Param` from core package
+- create `ExpressApplication` as a builder for Express app
+- create util to load controllers using `glob` with pattern `**/*Controller.ts`, `**/*.controller.ts`
+- create util to map parameters to action's exec
+- run the server using `createHttpServer` from package `http`
