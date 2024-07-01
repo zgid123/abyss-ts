@@ -1,7 +1,18 @@
-import { describe, expect, it, suite } from 'vitest';
+import { afterEach, describe, expect, it, suite } from 'vitest';
 
-import { ACTIONS, CONTROLLER, PARAMS } from '../../constants/metadata';
+import { IoC } from '../../core/IoC';
 import {
+  PARAMS,
+  ACTIONS,
+  CONTROLLER,
+  INJECTABLE,
+  IOC_CONTAINER,
+} from '../../constants/metadata';
+import {
+  pushToIoCContainer,
+  getFromIoCContainer,
+  getInjectionMetadata,
+  setInjectionMetadata,
   getControllerMetadata,
   setControllerMetadata,
   getActionParamMetadata,
@@ -28,21 +39,31 @@ describe('[utils]: metadataUtils', () => {
   });
 
   suite('getControllerMetadata', () => {
-    it('gets metadata from MyController class', () => {
-      class MyController {}
+    suite('set before use', () => {
+      it('gets metadata from MyController class', () => {
+        class MyController {}
 
-      Reflect.defineMetadata(
-        CONTROLLER,
-        {
-          type: 'controller',
+        Reflect.defineMetadata(
+          CONTROLLER,
+          {
+            type: 'controller',
+            route: 'test',
+          },
+          MyController,
+        );
+
+        expect(getControllerMetadata(MyController)).toStrictEqual({
           route: 'test',
-        },
-        MyController,
-      );
+          type: 'controller',
+        });
+      });
+    });
 
-      expect(getControllerMetadata(MyController)).toStrictEqual({
-        route: 'test',
-        type: 'controller',
+    suite('use without being set', () => {
+      it('gets {}', () => {
+        class MyController {}
+
+        expect(getControllerMetadata(MyController)).toStrictEqual({});
       });
     });
   });
@@ -76,16 +97,29 @@ describe('[utils]: metadataUtils', () => {
   });
 
   suite('getControllerActionMetadata', () => {
-    it('gets metadata from MyController class', () => {
-      class MyController {
-        index(): string {
-          return 'Test';
+    suite('set before use', () => {
+      it('gets metadata from MyController class', () => {
+        class MyController {
+          index(): string {
+            return 'Test';
+          }
         }
-      }
 
-      Reflect.defineMetadata(
-        ACTIONS,
-        [
+        Reflect.defineMetadata(
+          ACTIONS,
+          [
+            {
+              route: 'test',
+              type: 'action',
+              httpMethod: 'get',
+              propertyKey: 'index',
+              exec: MyController.prototype.index,
+            },
+          ],
+          MyController,
+        );
+
+        expect(getControllerActionMetadata(MyController)).toStrictEqual([
           {
             route: 'test',
             type: 'action',
@@ -93,19 +127,20 @@ describe('[utils]: metadataUtils', () => {
             propertyKey: 'index',
             exec: MyController.prototype.index,
           },
-        ],
-        MyController,
-      );
+        ]);
+      });
+    });
 
-      expect(getControllerActionMetadata(MyController)).toStrictEqual([
-        {
-          route: 'test',
-          type: 'action',
-          httpMethod: 'get',
-          propertyKey: 'index',
-          exec: MyController.prototype.index,
-        },
-      ]);
+    suite('use without being set', () => {
+      it('gets []', () => {
+        class MyController {
+          index(): string {
+            return 'Test';
+          }
+        }
+
+        expect(getControllerActionMetadata(MyController)).toStrictEqual([]);
+      });
     });
   });
 
@@ -135,36 +170,154 @@ describe('[utils]: metadataUtils', () => {
   });
 
   suite('getActionParamMetadata', () => {
-    it('gets metadata from MyController class', () => {
+    suite('set before use', () => {
+      it('gets metadata from MyController class', () => {
+        class MyController {
+          index(): string {
+            return 'Test';
+          }
+        }
+
+        Reflect.defineMetadata(
+          PARAMS,
+          [
+            {
+              type: 'query',
+              extractor: 'test',
+            },
+          ],
+          MyController,
+          'index',
+        );
+
+        expect(
+          getActionParamMetadata({
+            propertyKey: 'index',
+            controller: MyController,
+          }),
+        ).toStrictEqual([
+          {
+            type: 'query',
+            extractor: 'test',
+          },
+        ]);
+      });
+    });
+
+    suite('use without being set', () => {
+      it('gets []', () => {
+        class MyController {
+          index(): string {
+            return 'Test';
+          }
+        }
+
+        expect(
+          getActionParamMetadata({
+            propertyKey: 'index',
+            controller: MyController,
+          }),
+        ).toStrictEqual([]);
+      });
+    });
+  });
+
+  suite('setInjectionMetadata', () => {
+    it('sets metadata for MyController class', () => {
       class MyController {
         index(): string {
           return 'Test';
         }
       }
 
-      Reflect.defineMetadata(
-        PARAMS,
-        [
-          {
-            type: 'query',
-            extractor: 'test',
-          },
-        ],
-        MyController,
-        'index',
-      );
+      setInjectionMetadata({
+        scope: 'singleton',
+        target: MyController,
+      });
 
-      expect(
-        getActionParamMetadata({
-          propertyKey: 'index',
-          controller: MyController,
-        }),
-      ).toStrictEqual([
+      expect(Reflect.getMetadata(INJECTABLE, IoC)).toStrictEqual([
         {
-          type: 'query',
-          extractor: 'test',
+          scope: 'singleton',
+          target: MyController,
         },
       ]);
+    });
+  });
+
+  suite('getInjectionMetadata', () => {
+    afterEach(() => {
+      Reflect.deleteMetadata(INJECTABLE, IoC);
+    });
+
+    suite('set before use', () => {
+      it('gets metadata from MyController class', () => {
+        class MyController {
+          index(): string {
+            return 'Test';
+          }
+        }
+
+        Reflect.defineMetadata(
+          INJECTABLE,
+          [
+            {
+              scope: 'singleton',
+              target: MyController,
+            },
+          ],
+          IoC,
+        );
+
+        expect(getInjectionMetadata()).toStrictEqual([
+          {
+            scope: 'singleton',
+            target: MyController,
+          },
+        ]);
+      });
+    });
+
+    suite('use without being set', () => {
+      it('gets []', () => {
+        expect(getInjectionMetadata()).toStrictEqual([]);
+      });
+    });
+  });
+
+  suite('pushToIoCContainer', () => {
+    it('sets metadata for MyService class', () => {
+      class MyService {
+        index(): string {
+          return 'Test';
+        }
+      }
+
+      const instance = new MyService();
+
+      pushToIoCContainer({
+        instance,
+        target: MyService,
+      });
+
+      expect(Reflect.getMetadata(IOC_CONTAINER, MyService)).toStrictEqual(
+        instance,
+      );
+    });
+  });
+
+  suite('getFromIoCContainer', () => {
+    it('gets metadata from MyService class', () => {
+      class MyService {
+        index(): string {
+          return 'Test';
+        }
+      }
+
+      const instance = new MyService();
+
+      Reflect.defineMetadata(IOC_CONTAINER, instance, MyService);
+
+      expect(getFromIoCContainer(MyService)).toStrictEqual(instance);
     });
   });
 });

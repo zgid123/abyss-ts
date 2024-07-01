@@ -1,8 +1,18 @@
 import 'reflect-metadata';
 
+import { IoC } from '../core/IoC';
 import { push } from './arrayUtils';
 import { sanitize } from './routeUtils';
-import { ACTIONS, CONTROLLER, PARAMS } from '../constants/metadata';
+import {
+  PARAMS,
+  INJECT,
+  ACTIONS,
+  INJECTABLE,
+  CONTROLLER,
+  IOC_CONTAINER,
+} from '../constants/metadata';
+
+import type { TInjectionScopes } from '../constants/injection';
 
 export type THttpMethod = 'get' | 'post' | 'put' | 'delete' | 'patch';
 
@@ -30,7 +40,7 @@ export function setControllerMetadata({
 }
 
 export function getControllerMetadata(controller: TAny): IControllerProps {
-  return Reflect.getMetadata(CONTROLLER, controller);
+  return Reflect.getMetadata(CONTROLLER, controller) || {};
 }
 
 interface IControllerActionProps {
@@ -68,7 +78,12 @@ export function getControllerActionMetadata(
   return Reflect.getMetadata(ACTIONS, controller) || [];
 }
 
-export type TBaseActionParam = 'query' | 'param' | 'body' | 'request';
+export type TBaseActionParam =
+  | 'body'
+  | 'query'
+  | 'param'
+  | 'request'
+  | 'injection';
 
 export interface IActionParamProps {
   extractor?: string;
@@ -114,5 +129,81 @@ export function getActionParamMetadata({
   controller,
   propertyKey,
 }: IGetActionParamMetadataParams): IActionParamProps[] {
-  return Reflect.getMetadata(PARAMS, controller, propertyKey);
+  return Reflect.getMetadata(PARAMS, controller, propertyKey) || [];
+}
+
+export interface IInjectionProps {
+  target: TAny;
+  scope: TInjectionScopes;
+}
+
+export function setInjectionMetadata({ scope, target }: IInjectionProps): void {
+  const injections = getInjectionMetadata();
+
+  push(injections, {
+    scope,
+    target,
+  });
+
+  Reflect.defineMetadata(INJECTABLE, injections, IoC);
+}
+
+export function getInjectionMetadata(): IInjectionProps[] {
+  return Reflect.getMetadata(INJECTABLE, IoC) || [];
+}
+
+interface IInjectProps {
+  extractor: TAny;
+}
+
+interface ISetInjectParamMetadataParams {
+  target: TAny;
+  extractor: TAny;
+  parameterIndex: number;
+}
+
+export function setInjectParamMetadata({
+  target,
+  extractor,
+  parameterIndex,
+}: ISetInjectParamMetadataParams): void {
+  let params = getInjectParamMetadata({
+    target,
+  });
+
+  params = push(
+    params,
+    {
+      extractor,
+    },
+    parameterIndex,
+  );
+
+  Reflect.defineMetadata(INJECT, params, target, 'constructor');
+}
+
+interface IGetInjectParamMetadataParams {
+  target: TAny;
+}
+
+export function getInjectParamMetadata({
+  target,
+}: IGetInjectParamMetadataParams): IInjectProps[] {
+  return Reflect.getMetadata(INJECT, target, 'constructor') || [];
+}
+
+interface IPushToIoCContainerParams {
+  target: TAny;
+  instance: TAny;
+}
+
+export function pushToIoCContainer({
+  target,
+  instance,
+}: IPushToIoCContainerParams): void {
+  Reflect.defineMetadata(IOC_CONTAINER, instance, target);
+}
+
+export function getFromIoCContainer(target: TAny): TAny {
+  return Reflect.getMetadata(IOC_CONTAINER, target);
 }
