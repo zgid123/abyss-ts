@@ -2,14 +2,14 @@ import { nanoid } from 'nanoid';
 import bodyParser from 'body-parser';
 import detectPort from 'detect-port';
 import express, { type Express } from 'express';
-import { AbyssApplication } from '@abyss.ts/core';
+import { AbyssalApplication } from '@abyss.ts/core';
 import { createServer as createHttpServer } from 'http';
 
 import { mapRoutes } from './utils/routeUtils';
 import { mapInjections } from './utils/injectionUtils';
 import { mapController } from './utils/controllerUtils';
 
-export class ExpressApplication extends AbyssApplication<ExpressApplication> {
+export class ExpressApplication extends AbyssalApplication<ExpressApplication> {
   #express: Express;
 
   static #app: ExpressApplication;

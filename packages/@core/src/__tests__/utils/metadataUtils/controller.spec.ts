@@ -1,27 +1,16 @@
-import { afterEach, describe, expect, it, suite } from 'vitest';
+import { describe, expect, it, suite } from 'vitest';
 
-import { IoC } from '../../core/IoC';
+import { PARAMS, ACTIONS, CONTROLLER } from '../../../constants/metadata';
 import {
-  PARAMS,
-  ACTIONS,
-  CONTROLLER,
-  INJECTABLE,
-  IOC_CONTAINER,
-} from '../../constants/metadata';
-import {
-  pushToIoCContainer,
-  getFromIoCContainer,
-  getInjectionMetadata,
-  setInjectionMetadata,
   getControllerMetadata,
   setControllerMetadata,
   getActionParamMetadata,
   setActionParamMetadata,
   getControllerActionMetadata,
   setControllerActionMetadata,
-} from '../../utils/metadataUtils';
+} from '../../../utils/metadataUtils';
 
-describe('[utils]: metadataUtils', () => {
+describe('[utils]: metadataUtils - controller', () => {
   suite('setControllerMetadata', () => {
     it('sets metadata for MyController class', () => {
       class MyController {}
@@ -219,105 +208,6 @@ describe('[utils]: metadataUtils', () => {
           }),
         ).toStrictEqual([]);
       });
-    });
-  });
-
-  suite('setInjectionMetadata', () => {
-    it('sets metadata for MyController class', () => {
-      class MyController {
-        index(): string {
-          return 'Test';
-        }
-      }
-
-      setInjectionMetadata({
-        scope: 'singleton',
-        target: MyController,
-      });
-
-      expect(Reflect.getMetadata(INJECTABLE, IoC)).toStrictEqual([
-        {
-          scope: 'singleton',
-          target: MyController,
-        },
-      ]);
-    });
-  });
-
-  suite('getInjectionMetadata', () => {
-    afterEach(() => {
-      Reflect.deleteMetadata(INJECTABLE, IoC);
-    });
-
-    suite('set before use', () => {
-      it('gets metadata from MyController class', () => {
-        class MyController {
-          index(): string {
-            return 'Test';
-          }
-        }
-
-        Reflect.defineMetadata(
-          INJECTABLE,
-          [
-            {
-              scope: 'singleton',
-              target: MyController,
-            },
-          ],
-          IoC,
-        );
-
-        expect(getInjectionMetadata()).toStrictEqual([
-          {
-            scope: 'singleton',
-            target: MyController,
-          },
-        ]);
-      });
-    });
-
-    suite('use without being set', () => {
-      it('gets []', () => {
-        expect(getInjectionMetadata()).toStrictEqual([]);
-      });
-    });
-  });
-
-  suite('pushToIoCContainer', () => {
-    it('sets metadata for MyService class', () => {
-      class MyService {
-        index(): string {
-          return 'Test';
-        }
-      }
-
-      const instance = new MyService();
-
-      pushToIoCContainer({
-        instance,
-        target: MyService,
-      });
-
-      expect(Reflect.getMetadata(IOC_CONTAINER, MyService)).toStrictEqual(
-        instance,
-      );
-    });
-  });
-
-  suite('getFromIoCContainer', () => {
-    it('gets metadata from MyService class', () => {
-      class MyService {
-        index(): string {
-          return 'Test';
-        }
-      }
-
-      const instance = new MyService();
-
-      Reflect.defineMetadata(IOC_CONTAINER, instance, MyService);
-
-      expect(getFromIoCContainer(MyService)).toStrictEqual(instance);
     });
   });
 });
