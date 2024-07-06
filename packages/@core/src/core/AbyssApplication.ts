@@ -1,3 +1,7 @@
+import { config } from 'dotenv';
+
+import { combine } from '../utils/stringUtils';
+
 interface IPortProps {
   port: number;
   isStrict: boolean;
@@ -19,6 +23,25 @@ export abstract class AbyssApplication<T extends AbyssApplication<TAny>> {
 
   public usePort(port: Partial<IPortProps>): T {
     Object.assign(this._port, port);
+
+    return this._instance as T;
+  }
+
+  public loadEnv(): AbyssApplication<TAny> {
+    config({
+      path: '.env',
+    });
+
+    const envFile = combine(
+      { joinWith: '.' },
+      '.env',
+      process.env.NODE_ENV || 'development',
+    );
+
+    config({
+      override: true,
+      path: [envFile, `${envFile}.local`, '.env.local'],
+    });
 
     return this._instance as T;
   }
