@@ -7,7 +7,7 @@ interface IPortProps {
   isStrict: boolean;
 }
 
-export abstract class AbyssApplication<T extends AbyssApplication<TAny>> {
+export abstract class AbyssalApplication<T extends AbyssalApplication<TAny>> {
   protected _instance!: T;
 
   protected _port: IPortProps = {
@@ -17,7 +17,7 @@ export abstract class AbyssApplication<T extends AbyssApplication<TAny>> {
 
   protected constructor() {}
 
-  public static create(): AbyssApplication<TAny> {
+  public static create(): AbyssalApplication<TAny> {
     throw 'Must implement static create method';
   }
 
@@ -27,7 +27,7 @@ export abstract class AbyssApplication<T extends AbyssApplication<TAny>> {
     return this._instance as T;
   }
 
-  public loadEnv(): AbyssApplication<TAny> {
+  public loadEnv(): AbyssalApplication<TAny> {
     config({
       path: '.env',
     });

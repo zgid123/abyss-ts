@@ -1,4 +1,4 @@
-export * from './core/AbyssApplication';
+export * from './core/AbyssalApplication';
 
 export * from './decorators/controller';
 export * from './decorators/httpMethods';
