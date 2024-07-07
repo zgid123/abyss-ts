@@ -9,10 +9,10 @@ export {
   Delete,
   Inject,
   Request,
+  Context,
   Controller,
   Injectable,
 } from '@abyss.ts/core';
 
-export type { Request as TRequest } from 'express';
-
 export * from './Application';
+export * from './interface';
