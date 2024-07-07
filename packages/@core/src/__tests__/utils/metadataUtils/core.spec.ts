@@ -1,6 +1,10 @@
 import { describe, expect, it, suite } from 'vitest';
 
-import { setMetadata, getMetadata } from '../../../utils/metadataUtils';
+import {
+  setMetadata,
+  getMetadata,
+  deleteMetadata,
+} from '../../../utils/metadataUtils';
 
 describe('[utils]: metadataUtils - core', () => {
   suite('setMetadata', () => {
@@ -66,6 +70,21 @@ describe('[utils]: metadataUtils - core', () => {
           }),
         ).toBe('test_value');
       });
+    });
+  });
+
+  suite('deleteMetadata', () => {
+    it('deletes metadata for MyService class', () => {
+      class MyService {}
+
+      Reflect.defineMetadata('test', 'test_value', MyService);
+
+      deleteMetadata({
+        key: 'test',
+        target: MyService,
+      });
+
+      expect(Reflect.getMetadata('test', MyService)).toBe(undefined);
     });
   });
 });

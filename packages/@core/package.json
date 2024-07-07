@@ -23,12 +23,12 @@
   },
   "dependencies": {
     "dotenv": "^16.4.5",
-    "glob": "^10.4.2",
+    "glob": "^10.4.3",
     "reflect-metadata": "^0.2.2"
   },
   "devDependencies": {
     "@abyss.ts/internal-vitest": "workspace:^",
     "@types/glob": "^8.1.0",
-    "@types/node": "^20.14.9"
+    "@types/node": "^20.14.10"
   }
 }
