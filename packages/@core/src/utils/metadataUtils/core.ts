@@ -8,9 +8,9 @@ interface ISetMetadataParams {
 }
 
 export function setMetadata({
-  target,
   key,
   value,
+  target,
   propertyKey,
 }: ISetMetadataParams): void {
   let params: [string | symbol, TAny, TAny] = [key, value, target];
@@ -40,4 +40,13 @@ export function getMetadata<T>({
   }
 
   return Reflect.getMetadata(...params) as T;
+}
+
+interface IDeleteMetadataParams {
+  target: TAny;
+  key: string | symbol;
+}
+
+export function deleteMetadata({ key, target }: IDeleteMetadataParams): void {
+  Reflect.deleteMetadata(key, target);
 }

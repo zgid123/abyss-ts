@@ -86,6 +86,7 @@ export type TBaseActionParam =
   | 'query'
   | 'param'
   | 'request'
+  | 'context'
   | 'injection';
 
 export interface IActionParamProps {
