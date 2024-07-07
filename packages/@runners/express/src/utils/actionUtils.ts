@@ -1,8 +1,10 @@
 import { getActionParamMetadata, type IActionParamProps } from '@abyss.ts/core';
 
-import type { Request } from 'express';
+import { asyncStorage } from '../asyncStorage';
 
-function extractData(request: Request, param: IActionParamProps): TAny {
+import type { IRequest } from '../interface';
+
+function extractData(request: IRequest, param: IActionParamProps): TAny {
   const { type, extractor } = param;
 
   switch (type) {
@@ -15,6 +17,9 @@ function extractData(request: Request, param: IActionParamProps): TAny {
     case 'param': {
       return extractor ? request.params[extractor] : request.params;
     }
+    case 'context': {
+      return asyncStorage.get();
+    }
     default: {
       return request;
     }
@@ -22,8 +27,8 @@ function extractData(request: Request, param: IActionParamProps): TAny {
 }
 
 interface IMapParametersParams {
-  request: Request;
   controller: TAny;
+  request: IRequest;
   propertyKey: string | symbol;
 }
 

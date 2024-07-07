@@ -9,6 +9,8 @@ import {
 
 import { mapParameters } from './actionUtils';
 
+import type { IRequest } from '../interface';
+
 export function mapRoutes(controllers: TAny[]): [string[], Router] {
   console.log('Initializing routes...');
 
@@ -38,7 +40,7 @@ export function mapRoutes(controllers: TAny[]): [string[], Router] {
         const params = mapParameters({
           controller,
           propertyKey,
-          request: req,
+          request: req as IRequest,
         });
 
         res.send(exec.bind(controllerInstance)(...params));
