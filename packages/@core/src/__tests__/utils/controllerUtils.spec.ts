@@ -1,6 +1,7 @@
 import { describe, expect, it, suite } from 'vitest';
 
-import { loadControllers } from '../../utils/controllerUtils';
+import { ValidController } from '../AController';
+import { loadControllers, mapControllers } from '../../utils/controllerUtils';
 
 describe('[utils]: controllerUtils', () => {
   suite('loadControllers', () => {
@@ -11,6 +12,15 @@ describe('[utils]: controllerUtils', () => {
 
       expect(controllers).toContain('AController');
       expect(controllers).toContain('BController');
+    });
+  });
+
+  suite('mapControllers', () => {
+    it('gets all classes with Controller annotation', async () => {
+      const controllers = await mapControllers();
+
+      expect(controllers).toHaveLength(1);
+      expect(controllers[0]).toBe(ValidController);
     });
   });
 });

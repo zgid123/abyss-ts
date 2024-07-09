@@ -1,7 +1,11 @@
 import { IoC } from '../../core/IoC';
 import { push } from '../arrayUtils';
-import { getMetadata, setMetadata } from './core';
-import { INJECT, INJECTABLE } from '../../constants/metadata';
+import { deleteMetadata, getMetadata, setMetadata } from './core';
+import {
+  INJECT,
+  INJECTABLE,
+  INJECTABLE_IDENTITY,
+} from '../../constants/metadata';
 
 import type { TInjectionScopes } from '../../constants/injection';
 
@@ -23,6 +27,14 @@ export function setInjectionMetadata({ scope, target }: IInjectionProps): void {
     key: INJECTABLE,
     value: injections,
   });
+
+  const key = Symbol(target.name || target.toString());
+
+  setMetadata({
+    target,
+    value: key,
+    key: INJECTABLE_IDENTITY,
+  });
 }
 
 export function getInjectionMetadata(): IInjectionProps[] {
@@ -32,6 +44,13 @@ export function getInjectionMetadata(): IInjectionProps[] {
       key: INJECTABLE,
     }) || []
   );
+}
+
+export function deleteInjectionMetadata(): void {
+  deleteMetadata({
+    target: IoC,
+    key: INJECTABLE,
+  });
 }
 
 interface IInjectProps {
