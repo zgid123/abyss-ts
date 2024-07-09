@@ -1,11 +1,11 @@
-export const CONTROLLER = '__controllerMetadata__';
+export const CONTROLLER = Symbol.for('__controllerMetadata__');
 
-export const ACTIONS = '__actionsMetadata__';
+export const ACTIONS = Symbol.for('__actionsMetadata__');
 
-export const PARAMS = '__actionParamsMetadata__';
+export const PARAMS = Symbol.for('__actionParamsMetadata__');
 
-export const INJECTABLE = '__injectableMetadata__';
+export const INJECTABLE = Symbol.for('__injectableMetadata__');
 
-export const INJECT = '__injectMetadata__';
+export const INJECT = Symbol.for('__injectMetadata__');
 
-export const IOC_CONTAINER = '__iocContainer__';
+export const INJECTABLE_IDENTITY = Symbol.for('__injectableIdentity__');

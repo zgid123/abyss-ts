@@ -1,6 +1,8 @@
 import { config } from 'dotenv';
 
 import { combine } from '../utils/stringUtils';
+import { mapInjections } from '../utils/injectionUtils';
+import { mapControllers } from '../utils/controllerUtils';
 
 interface IPortProps {
   port: number;
@@ -48,5 +50,13 @@ export abstract class AbyssalApplication<T extends AbyssalApplication<TAny>> {
 
   public async run(): Promise<void> {
     throw 'Must implement run method';
+  }
+
+  protected _mapControllers(): Promise<TAny[]> {
+    return mapControllers();
+  }
+
+  protected _mapInjections(): void {
+    return mapInjections();
   }
 }

@@ -17,8 +17,8 @@ export function setControllerMetadata({
   controller,
 }: Omit<IControllerProps, 'type'> & IBaseSetProps): void {
   setMetadata({
-    target: controller,
     key: CONTROLLER,
+    target: controller,
     value: {
       type: 'controller',
       route: sanitize(route),
