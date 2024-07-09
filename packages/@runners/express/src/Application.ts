@@ -7,8 +7,6 @@ import { AbyssalContext, AbyssalApplication } from '@abyss.ts/core';
 
 import { asyncStorage } from './asyncStorage';
 import { mapRoutes } from './utils/routeUtils';
-import { mapInjections } from './utils/injectionUtils';
-import { mapController } from './utils/controllerUtils';
 
 import type { IRequest } from './interface';
 
@@ -40,10 +38,9 @@ export class ExpressApplication extends AbyssalApplication<ExpressApplication> {
   }
 
   public async run(): Promise<void> {
-    const controllers = await mapController();
+    const controllers = await this._mapControllers();
 
-    mapInjections();
-
+    this._mapInjections();
     this.#createContext();
 
     const [routes, router] = mapRoutes(controllers);
