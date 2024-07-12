@@ -1,5 +1,5 @@
-import { MikroOrmConfiguration, MikroOrmMiddleware } from '@abyss.ts/mikro-orm';
 import { ExpressApplication } from '@abyss.ts/express-runner';
+import { MikroOrmConfiguration, MikroOrmMiddleware } from '@abyss.ts/mikro-orm';
 
 ExpressApplication.create()
   .useBodyParser()

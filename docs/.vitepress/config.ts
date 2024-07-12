@@ -37,6 +37,23 @@ export default defineConfig({
             text: 'Dependency Injection',
             link: '/fundamentals/dependency-injection',
           },
+          {
+            text: 'Configuration',
+            link: '/fundamentals/configuration',
+          },
+          {
+            text: 'Middleware',
+            link: '/fundamentals/middleware',
+          },
+        ],
+      },
+      {
+        text: 'ORMs',
+        items: [
+          {
+            text: 'MikroORM',
+            link: '/orms/mikro-orm',
+          },
         ],
       },
       {
@@ -51,6 +68,11 @@ export default defineConfig({
             text: 'express-runner',
             link: '/changelogs/express-runner',
             docFooterText: 'Changelogs - express-runner',
+          },
+          {
+            text: 'mikro-orm',
+            link: '/changelogs/mikro-orm',
+            docFooterText: 'Changelogs - mikro-orm',
           },
         ],
       },

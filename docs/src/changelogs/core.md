@@ -1,5 +1,14 @@
 # Changelogs
 
+## 0.0.3
+
+- add loadEnv method for class AbyssApplication to load .env
+- create function to create custom metadata
+- create context
+- create AbyssalConfiguration and AbyssalMiddleware to create 3rd party and global middleware
+
+**Full Changelog**: https://github.com/zgid123/abyss-ts/compare/core@0.0.2...core@0.0.3
+
 ## 0.0.2
 
 - build simple ioc container for di
