@@ -16,6 +16,7 @@
     "skipLibCheck": true,
     "sourceMap": false,
     "strict": true,
+    "strictPropertyInitialization": false,
     "target": "esnext",
     "verbatimModuleSyntax": true
   },
