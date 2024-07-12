@@ -6,17 +6,52 @@ import {
   pushToIoCContainer,
   getFromIoCContainer,
   getInjectableIdentity,
+  isExistingInIoCContainer,
 } from '../../../utils/metadataUtils';
 
 describe('[utils]: metadataUtils - ioc', () => {
   suite('getInjectableIdentity', () => {
-    it('gets symbol identity for MyService class', () => {
-      class MyService {}
+    suite('with string param', () => {
+      it('gets symbol identity for MyService class', () => {
+        class MyService {}
 
-      const key = Symbol(MyService.name);
-      Reflect.defineMetadata(INJECTABLE_IDENTITY, key, MyService);
+        Reflect.defineMetadata(
+          INJECTABLE_IDENTITY,
+          Symbol(MyService.name),
+          MyService,
+        );
 
-      expect(getInjectableIdentity(MyService)).toBe(key);
+        expect(getInjectableIdentity('__test_string__')).toBe(
+          '__test_string__',
+        );
+      });
+    });
+
+    suite('with symbol param', () => {
+      it('gets symbol identity for MyService class', () => {
+        class MyService {}
+
+        Reflect.defineMetadata(
+          INJECTABLE_IDENTITY,
+          Symbol(MyService.name),
+          MyService,
+        );
+
+        expect(getInjectableIdentity(Symbol.for('__test_symbol__'))).toBe(
+          Symbol.for('__test_symbol__'),
+        );
+      });
+    });
+
+    suite('with class param', () => {
+      it('gets symbol identity for MyService class', () => {
+        class MyService {}
+
+        const key = Symbol(MyService.name);
+        Reflect.defineMetadata(INJECTABLE_IDENTITY, key, MyService);
+
+        expect(getInjectableIdentity(MyService)).toBe(key);
+      });
     });
   });
 
@@ -108,6 +143,29 @@ describe('[utils]: metadataUtils - ioc', () => {
         Reflect.defineMetadata(INJECTABLE_IDENTITY, MyService.name, MyService);
 
         expect(getFromIoCContainer(MyService)).toStrictEqual(instance);
+      });
+    });
+  });
+
+  suite('isExistingInIoCContainer', () => {
+    suite('with existing key', () => {
+      it('returns true', () => {
+        class MyService {}
+
+        const instance = new MyService();
+        Reflect.defineMetadata(Symbol.for(MyService.name), instance, IoC);
+
+        expect(
+          isExistingInIoCContainer(Symbol.for(MyService.name)),
+        ).toBeTruthy();
+      });
+    });
+
+    suite('with non-existing key', () => {
+      it('returns false', () => {
+        class MyService {}
+
+        expect(isExistingInIoCContainer(MyService)).toBeFalsy();
       });
     });
   });
