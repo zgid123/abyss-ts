@@ -38,10 +38,15 @@ export class ExpressApplication extends AbyssalApplication<ExpressApplication> {
   }
 
   public async run(): Promise<void> {
+    await this._mapConfigurations();
+
+    this.#createContext();
+
+    await this._mapMiddlewares();
     const controllers = await this._mapControllers();
 
+    this.#applyMiddlewares();
     this._mapInjections();
-    this.#createContext();
 
     const [routes, router] = mapRoutes(controllers);
 
@@ -61,6 +66,8 @@ export class ExpressApplication extends AbyssalApplication<ExpressApplication> {
     if (routes.length) {
       console.log(`\n\nList routes: \n${routes.join('\n')}`);
     }
+
+    this._dispose();
   }
 
   #createContext(): void {
@@ -77,5 +84,19 @@ export class ExpressApplication extends AbyssalApplication<ExpressApplication> {
         next();
       });
     });
+  }
+
+  #applyMiddlewares(): void {
+    for (const middlewareInstace of this._middlewareInstances) {
+      this.#express.use((req, _res, next) => {
+        const ctx =
+          asyncStorage.get() ||
+          AbyssalContext.create<IRequest>({
+            request: req as IRequest,
+          });
+
+        middlewareInstace.use(ctx, next);
+      });
+    }
   }
 }
