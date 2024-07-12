@@ -1,5 +1,13 @@
 # Changelogs
 
+## 0.0.3
+
+- create context per request using async storage
+- map controllers and injections using AbyssalApplication methods instead
+- apply configurations and middlewares
+
+**Full Changelog**: https://github.com/zgid123/abyss-ts/compare/express-runner@0.0.2...express-runner@0.0.3
+
 ## 0.0.2
 
 - export more decorators from core package: `Put`, `Post`, `Patch`, `Delete`, `Inject` and `Injectable`
