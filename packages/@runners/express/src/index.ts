@@ -12,6 +12,9 @@ export {
   Context,
   Controller,
   Injectable,
+  AbyssalContext,
+  type IAbyssalMiddleware,
+  type IAbyssalConfiguration,
 } from '@abyss.ts/core';
 
 export * from './Application';
