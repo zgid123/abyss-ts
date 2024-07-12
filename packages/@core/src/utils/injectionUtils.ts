@@ -55,6 +55,11 @@ function topologicalGroup(
           level = Math.max(level, visitedData.level);
         } else {
           visitedAllDependencies = false;
+
+          visited[extractor] = {
+            visited: true,
+            level: Math.max(level - 1, 0),
+          };
         }
       });
 
@@ -85,6 +90,10 @@ export function mapInjections(): void {
   const groupedInjections = topologicalGroup(injections);
 
   for (const pack of groupedInjections) {
+    if (!pack?.length) {
+      continue;
+    }
+
     for (const injection of pack) {
       const { target, scope } = injection;
 
