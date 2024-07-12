@@ -1,0 +1,30 @@
+{
+  "name": "@example/express-mikro-orm",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "bun --watch src/main.ts",
+    "migrate:create": "mikro-orm-esm migration:create",
+    "seed:create": "dotenv -e .env mikro-orm seeder:create",
+    "db:migrate": "mikro-orm-esm migration:up",
+    "db:rollback": "dotenv -e .env mikro-orm migration:down",
+    "db:seed": "dotenv -e .env -- mikro-orm seeder:run",
+    "db:test:migrate": "dotenv -e .env.test.local mikro-orm-esm migration:up"
+  },
+  "dependencies": {
+    "@abyss.ts/express-runner": "workspace:^",
+    "@abyss.ts/mikro-orm": "workspace:^",
+    "@mikro-orm/core": "^6.2.9",
+    "@mikro-orm/migrations": "^6.2.9",
+    "@mikro-orm/postgresql": "^6.2.9",
+    "@mikro-orm/seeder": "^6.2.9",
+    "pluralize-esm": "^9.0.5"
+  },
+  "devDependencies": {
+    "@mikro-orm/cli": "^6.2.9",
+    "tsx": "^4.16.2"
+  },
+  "mikro-orm": {
+    "useTsNode": true
+  }
+}
