@@ -7,10 +7,13 @@ import {
   getFromIoCContainer,
   getInjectableIdentity,
   getInjectParamMetadata,
+  getExceptionCatchClassMetadata,
 } from '../utils/metadataUtils';
 
+import type { TExceptionHandlerClass } from '../typings';
 import type { IAbyssalMiddleware } from './AbyssalMiddleware';
 import type { IAbyssalConfiguration } from './AbyssalConfiguration';
+import type { IAbyssalExceptionHandler } from './AbyssalExceptionHandler';
 
 interface IPortProps {
   port: number;
@@ -24,8 +27,10 @@ export abstract class AbyssalApplication<T extends AbyssalApplication<TAny>> {
   protected _instance!: T;
   protected _configurations: TConfigurationClass[] = [];
   protected _middlewareInstances: IAbyssalMiddleware[] = [];
+  protected _exceptionHandlers: IAbyssalExceptionHandler[] = [];
 
   #middlewares: TMiddlewareClass[] = [];
+  #exceptionHandlers: TExceptionHandlerClass[] = [];
   #configurationInstances: IAbyssalConfiguration[] = [];
 
   protected _port: IPortProps = {
@@ -47,6 +52,14 @@ export abstract class AbyssalApplication<T extends AbyssalApplication<TAny>> {
 
   public useMiddleware(...middlewares: TMiddlewareClass[]): T {
     this.#middlewares.push(...middlewares);
+
+    return this._instance as T;
+  }
+
+  public useExceptionHandler(
+    ...exceptionHandlers: TExceptionHandlerClass[]
+  ): T {
+    this.#exceptionHandlers.push(...exceptionHandlers);
 
     return this._instance as T;
   }
@@ -113,6 +126,27 @@ export abstract class AbyssalApplication<T extends AbyssalApplication<TAny>> {
     );
   }
 
+  protected _mapExceptionHandlers(): void {
+    const allExceptionHandlers: IAbyssalExceptionHandler[] = [];
+    const singleExceptionHandlers: IAbyssalExceptionHandler[] = [];
+
+    for (const exceptionHandler of this.#exceptionHandlers) {
+      const catchClass = getExceptionCatchClassMetadata(exceptionHandler);
+      const exceptionHandlerInstance = new exceptionHandler();
+
+      if (catchClass) {
+        singleExceptionHandlers.push(exceptionHandlerInstance);
+      } else {
+        allExceptionHandlers.push(exceptionHandlerInstance);
+      }
+    }
+
+    this._exceptionHandlers = this._exceptionHandlers.concat(
+      singleExceptionHandlers,
+      allExceptionHandlers,
+    );
+  }
+
   protected _mapControllers(): Promise<TAny[]> {
     return mapControllers();
   }
@@ -129,7 +163,7 @@ export abstract class AbyssalApplication<T extends AbyssalApplication<TAny>> {
         }),
       );
 
-      process.exit(1);
+      process.exit(0);
     };
 
     process.on('SIGINT', dispose);
