@@ -1,5 +1,13 @@
 # Changelogs
 
+## 0.0.4
+
+- create `BaseExceptionHandler` to catch all exceptions if no custom handler
+- apply global exception handlers, one middleware per handler
+- add `try catch` for action execution and pass error to next middleware to handle exception
+
+**Full Changelog**: https://github.com/zgid123/abyss-ts/compare/express-runner@0.0.3...express-runner@0.0.4
+
 ## 0.0.3
 
 - create context per request using async storage

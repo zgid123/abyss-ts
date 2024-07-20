@@ -45,6 +45,10 @@ export default defineConfig({
             text: 'Middleware',
             link: '/fundamentals/middleware',
           },
+          {
+            text: 'Exception Handler',
+            link: '/fundamentals/exception-handler',
+          },
         ],
       },
       {
