@@ -1,5 +1,17 @@
 # Changelogs
 
+## 0.0.4
+
+- create default http status codes
+- change exit 1 to 0 for dispose
+- create methods to map exception handlers for `AbyssalApplication`
+- add response to `AbyssalContext`
+- create `AbyssalException` to create custom exception
+- create `IAbyssalExceptionHandler` to create custom exception handler
+- create decorator `Catch` for setting exception class for handler
+
+**Full Changelog**: https://github.com/zgid123/abyss-ts/compare/core@0.0.3...core@0.0.4
+
 ## 0.0.3
 
 - add loadEnv method for class AbyssApplication to load .env
