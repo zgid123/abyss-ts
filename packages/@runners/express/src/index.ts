@@ -6,6 +6,7 @@ export {
   Patch,
   Query,
   Param,
+  Catch,
   Delete,
   Inject,
   Request,
@@ -13,8 +14,11 @@ export {
   Controller,
   Injectable,
   AbyssalContext,
+  httpStatusCodes,
+  AbyssalException,
   type IAbyssalMiddleware,
   type IAbyssalConfiguration,
+  type IAbyssalExceptionHandler,
 } from '@abyss.ts/core';
 
 export * from './Application';

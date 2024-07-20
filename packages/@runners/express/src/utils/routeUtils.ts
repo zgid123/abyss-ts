@@ -36,16 +36,20 @@ export function mapRoutes(controllers: TAny[]): [string[], Router] {
         combine({ joinWith: ' ' }, httpMethod.toUpperCase(), httpRoute),
       );
 
-      router[httpMethod](httpRoute, async (req, res) => {
+      router[httpMethod](httpRoute, async (req, res, next) => {
         const params = mapParameters({
           controller,
           propertyKey,
           request: req as IRequest,
         });
 
-        const result = await exec.bind(controllerInstance)(...params);
+        try {
+          const result = await exec.bind(controllerInstance)(...params);
 
-        res.send(result);
+          res.send(result);
+        } catch (err) {
+          next(err);
+        }
       });
     }
   }
