@@ -1,6 +1,6 @@
 {
   "name": "@abyss.ts/core",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "Alpha",
   "repository": {
     "type": "git",
@@ -29,6 +29,6 @@
   "devDependencies": {
     "@abyss.ts/internal-vitest": "workspace:^",
     "@types/glob": "^8.1.0",
-    "@types/node": "^20.14.10"
+    "@types/node": "^20.14.11"
   }
 }
