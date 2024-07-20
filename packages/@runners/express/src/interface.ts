@@ -9,4 +9,4 @@ export interface IResponse extends Response {}
 
 export interface INext extends NextFunction {}
 
-export interface IContext extends AbyssalContext<IRequest> {}
+export interface IContext extends AbyssalContext<IRequest, IResponse> {}
