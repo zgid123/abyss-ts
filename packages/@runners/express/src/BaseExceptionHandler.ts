@@ -1,14 +1,18 @@
-import { httpStatusCodes, type IAbyssalExceptionHandler } from '@abyss.ts/core';
+import {
+  httpStatusCodes,
+  type AbyssalException,
+  type IAbyssalExceptionHandler,
+} from '@abyss.ts/core';
 
 import type { IContext, INext } from './interface';
 
 export class BaseExceptionHandler implements IAbyssalExceptionHandler {
-  public async catch(error: Error, ctx: IContext, _next: INext): Promise<void> {
+  public catch(error: AbyssalException, ctx: IContext, _next: INext): void {
     const { response } = ctx;
 
     response.status(httpStatusCodes.internalServerError).send({
+      message: error.message,
       status: httpStatusCodes.internalServerError,
-      message: typeof error === 'string' ? error : error.message,
     });
   }
 }

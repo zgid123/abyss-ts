@@ -7,6 +7,7 @@ import {
   AbyssalContext,
   AbyssalApplication,
   getExceptionCatchClassMetadata,
+  type AbyssalException,
 } from '@abyss.ts/core';
 
 import { asyncStorage } from './asyncStorage';
@@ -118,7 +119,7 @@ export class ExpressApplication extends AbyssalApplication<ExpressApplication> {
       );
 
       this.#express.use(
-        (err: Error, _req: Request, _res: Response, next: INext) => {
+        (err: AbyssalException, _req: Request, _res: Response, next: INext) => {
           const ctx = asyncStorage.get();
 
           if (!catchClass || err instanceof catchClass) {
@@ -131,7 +132,7 @@ export class ExpressApplication extends AbyssalApplication<ExpressApplication> {
     }
 
     this.#express.use(
-      (err: Error, _req: Request, _res: Response, next: INext) => {
+      (err: AbyssalException, _req: Request, _res: Response, next: INext) => {
         const ctx = asyncStorage.get();
 
         this.#baseExceptionHandler.catch(err, ctx!, next);

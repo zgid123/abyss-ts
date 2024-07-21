@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import {
   combine,
+  AbyssalException,
   getFromIoCContainer,
   getControllerMetadata,
   getInjectParamMetadata,
@@ -48,7 +49,13 @@ export function mapRoutes(controllers: TAny[]): [string[], Router] {
 
           res.send(result);
         } catch (err) {
-          next(err);
+          let error = err;
+
+          if (typeof err === 'string') {
+            error = new AbyssalException(err);
+          }
+
+          next(error);
         }
       });
     }
