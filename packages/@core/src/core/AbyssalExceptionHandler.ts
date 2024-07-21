@@ -1,5 +1,6 @@
 import type { AbyssalContext } from './AbyssalContext';
+import type { AbyssalException } from './AbyssalException';
 
 export interface IAbyssalExceptionHandler {
-  catch(error: Error, ctx: AbyssalContext, next: TFunction): void;
+  catch(error: AbyssalException, ctx: AbyssalContext, next: TFunction): void;
 }
