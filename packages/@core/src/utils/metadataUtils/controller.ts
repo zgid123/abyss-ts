@@ -1,7 +1,7 @@
+import { ACTIONS, CONTROLLER, PARAMS } from '../../constants/metadata';
 import { push } from '../arrayUtils';
 import { sanitize } from '../routeUtils';
 import { getMetadata, setMetadata } from './core';
-import { ACTIONS, CONTROLLER, PARAMS } from '../../constants/metadata';
 
 interface IBaseSetProps {
   controller: TAny;

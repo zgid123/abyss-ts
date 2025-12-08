@@ -1,4 +1,4 @@
-import { Get, Inject, Controller } from '@abyss.ts/express-runner';
+import { Controller, Get, Inject } from '@abyss.ts/express-runner';
 
 import { GetCategoryService } from './services/GetCategoryService';
 

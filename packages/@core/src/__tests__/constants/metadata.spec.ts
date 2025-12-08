@@ -1,12 +1,12 @@
 import { describe, expect, it } from 'vitest';
 
 import {
-  INJECT,
-  PARAMS,
   ACTIONS,
-  INJECTABLE,
   CONTROLLER,
+  INJECT,
+  INJECTABLE,
   INJECTABLE_IDENTITY,
+  PARAMS,
 } from '../../constants/metadata';
 
 describe('[constants]: metadata', () => {

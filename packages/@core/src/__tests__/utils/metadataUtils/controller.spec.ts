@@ -1,13 +1,13 @@
 import { describe, expect, it, suite } from 'vitest';
 
-import { PARAMS, ACTIONS, CONTROLLER } from '../../../constants/metadata';
+import { ACTIONS, CONTROLLER, PARAMS } from '../../../constants/metadata';
 import {
-  getControllerMetadata,
-  setControllerMetadata,
   getActionParamMetadata,
-  setActionParamMetadata,
   getControllerActionMetadata,
+  getControllerMetadata,
+  setActionParamMetadata,
   setControllerActionMetadata,
+  setControllerMetadata,
 } from '../../../utils/metadataUtils';
 
 describe('[utils]: metadataUtils - controller', () => {

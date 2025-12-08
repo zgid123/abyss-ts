@@ -1,6 +1,5 @@
-import { setExceptionCatchClassMetadata } from '../utils/metadataUtils/exception';
-
 import type { AbyssalException } from '../core/AbyssalException';
+import { setExceptionCatchClassMetadata } from '../utils/metadataUtils/exception';
 
 export function Catch(
   exceptionClass: typeof AbyssalException | TAny,

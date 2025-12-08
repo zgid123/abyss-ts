@@ -1,3 +1,13 @@
-import { defineWorkspace } from 'vitest/config';
+import { defineConfig } from 'vitest/config';
 
-export default defineWorkspace(['packages/**/vitest.config.ts']);
+export default defineConfig({
+  test: {
+    coverage: {
+      provider: 'istanbul',
+      reporter: ['text', 'json', 'html'],
+    },
+    globals: true,
+    include: ['**/__tests__/**/*.spec.ts'],
+    reporters: 'verbose',
+  },
+});

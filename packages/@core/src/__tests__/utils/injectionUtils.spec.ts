@@ -1,7 +1,7 @@
 import { describe, expect, it, suite } from 'vitest';
 
-import { IoC } from '../../core/IoC';
 import { INJECTABLE } from '../../constants/metadata';
+import { IoC } from '../../core/IoC';
 import { Injectable } from '../../decorators/injection';
 import { mapInjections } from '../../utils/injectionUtils';
 import { getFromIoCContainer } from '../../utils/metadataUtils';

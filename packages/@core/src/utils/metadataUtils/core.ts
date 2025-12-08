@@ -13,7 +13,7 @@ export function setMetadata({
   target,
   propertyKey,
 }: ISetMetadataParams): void {
-  let params: [string | symbol, TAny, TAny] = [key, value, target];
+  const params: [string | symbol, TAny, TAny] = [key, value, target];
 
   if (propertyKey) {
     params.push(propertyKey);
@@ -33,7 +33,7 @@ export function getMetadata<T>({
   target,
   propertyKey,
 }: IGetMetadataParams): T {
-  let params: [string | symbol, TAny] = [key, target];
+  const params: [string | symbol, TAny] = [key, target];
 
   if (propertyKey) {
     params.push(propertyKey);

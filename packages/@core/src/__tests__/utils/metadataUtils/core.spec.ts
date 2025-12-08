@@ -1,9 +1,9 @@
 import { describe, expect, it, suite } from 'vitest';
 
 import {
-  setMetadata,
-  getMetadata,
   deleteMetadata,
+  getMetadata,
+  setMetadata,
 } from '../../../utils/metadataUtils';
 
 describe('[utils]: metadataUtils - core', () => {

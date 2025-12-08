@@ -1,5 +1,5 @@
-import { nanoid } from 'nanoid';
 import { Injectable } from '@abyss.ts/express-runner';
+import { nanoid } from 'nanoid';
 
 @Injectable()
 export class FilterService {

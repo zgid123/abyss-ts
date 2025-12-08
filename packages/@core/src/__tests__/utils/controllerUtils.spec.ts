@@ -1,7 +1,7 @@
 import { describe, expect, it, suite } from 'vitest';
 
-import { ValidController } from '../AController';
 import { loadControllers, mapControllers } from '../../utils/controllerUtils';
+import { ValidController } from '../AController';
 
 describe('[utils]: controllerUtils', () => {
   suite('loadControllers', () => {

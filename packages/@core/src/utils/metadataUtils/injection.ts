@@ -1,13 +1,12 @@
-import { IoC } from '../../core/IoC';
-import { push } from '../arrayUtils';
-import { deleteMetadata, getMetadata, setMetadata } from './core';
+import type { TInjectionScopes } from '../../constants/injection';
 import {
   INJECT,
   INJECTABLE,
   INJECTABLE_IDENTITY,
 } from '../../constants/metadata';
-
-import type { TInjectionScopes } from '../../constants/injection';
+import { IoC } from '../../core/IoC';
+import { push } from '../arrayUtils';
+import { deleteMetadata, getMetadata, setMetadata } from './core';
 
 export interface IInjectionProps {
   target: TAny;

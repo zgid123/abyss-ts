@@ -14,21 +14,25 @@
     "main": "lib/index.js",
     "types": "lib/index.d.ts"
   },
-  "keywords": ["abyss", "abyssts", "abyssjs", "abyss.js", "abyss.ts", "node"],
+  "keywords": [
+    "abyss",
+    "abyssts",
+    "abyssjs",
+    "abyss.js",
+    "abyss.ts",
+    "node"
+  ],
   "scripts": {
     "prepublish": "pnpm build",
-    "build": "tsup",
-    "test": "vitest run",
-    "test:cov": "vitest run --coverage"
+    "build": "tsdown"
   },
   "dependencies": {
-    "dotenv": "^16.4.5",
-    "glob": "^11.0.0",
+    "dotenv": "^17.2.3",
+    "glob": "^13.0.0",
     "reflect-metadata": "^0.2.2"
   },
   "devDependencies": {
-    "@abyss.ts/internal-vitest": "workspace:^",
-    "@types/glob": "^8.1.0",
-    "@types/node": "^20.14.11"
+    "@types/glob": "^9.0.0",
+    "@types/node": "^24.10.1"
   }
 }

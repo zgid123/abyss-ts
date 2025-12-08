@@ -1,9 +1,9 @@
-import { glob } from 'glob';
-import { cwd } from 'node:process';
-import { resolve } from 'node:path';
 import { existsSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { cwd } from 'node:process';
+import { type IAbyssalConfiguration, pushToIoCContainer } from '@abyss.ts/core';
 import { MikroORM, type Options } from '@mikro-orm/core';
-import { pushToIoCContainer, type IAbyssalConfiguration } from '@abyss.ts/core';
+import { glob } from 'glob';
 
 import { EM, ORM } from './constants';
 

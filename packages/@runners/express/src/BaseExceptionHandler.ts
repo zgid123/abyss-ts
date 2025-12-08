@@ -1,6 +1,6 @@
 import {
-  httpStatusCodes,
   type AbyssalException,
+  httpStatusCodes,
   type IAbyssalExceptionHandler,
 } from '@abyss.ts/core';
 

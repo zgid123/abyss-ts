@@ -1,12 +1,12 @@
 import { afterEach, describe, expect, it, suite } from 'vitest';
 
-import { IoC } from '../../../core/IoC';
 import { INJECT, INJECTABLE } from '../../../constants/metadata';
+import { IoC } from '../../../core/IoC';
 import {
-  setInjectionMetadata,
   getInjectionMetadata,
-  setInjectParamMetadata,
   getInjectParamMetadata,
+  setInjectionMetadata,
+  setInjectParamMetadata,
 } from '../../../utils/metadataUtils';
 
 describe('[utils]: metadataUtils - injection', () => {

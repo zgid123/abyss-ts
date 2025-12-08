@@ -1,19 +1,19 @@
+/** biome-ignore-all lint/suspicious/noConfusingVoidType: ignore */
 import { config } from 'dotenv';
 
-import { combine } from '../utils/stringUtils';
-import { mapInjections } from '../utils/injectionUtils';
+import type { TExceptionHandlerClass } from '../typings';
 import { mapControllers } from '../utils/controllerUtils';
+import { mapInjections } from '../utils/injectionUtils';
 import {
+  getExceptionCatchClassMetadata,
   getFromIoCContainer,
   getInjectableIdentity,
   getInjectParamMetadata,
-  getExceptionCatchClassMetadata,
 } from '../utils/metadataUtils';
-
-import type { TExceptionHandlerClass } from '../typings';
-import type { IAbyssalMiddleware } from './AbyssalMiddleware';
+import { combine } from '../utils/stringUtils';
 import type { IAbyssalConfiguration } from './AbyssalConfiguration';
 import type { IAbyssalExceptionHandler } from './AbyssalExceptionHandler';
+import type { IAbyssalMiddleware } from './AbyssalMiddleware';
 
 interface IPortProps {
   port: number;
@@ -122,6 +122,8 @@ export abstract class AbyssalApplication<T extends AbyssalApplication<TAny>> {
         const instance = new middleware(...params);
 
         this._middlewareInstances.push(instance);
+
+        return Promise.resolve();
       }),
     );
   }
@@ -152,7 +154,7 @@ export abstract class AbyssalApplication<T extends AbyssalApplication<TAny>> {
   }
 
   protected _mapInjections(): void {
-    return mapInjections();
+    mapInjections();
   }
 
   protected _dispose(): void {

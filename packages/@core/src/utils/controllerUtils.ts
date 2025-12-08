@@ -1,6 +1,6 @@
-import { glob } from 'glob';
-import { cwd } from 'node:process';
 import { resolve } from 'node:path';
+import { cwd } from 'node:process';
+import { glob } from 'glob';
 
 import { getControllerMetadata } from './metadataUtils';
 
@@ -42,9 +42,7 @@ export async function mapControllers(): Promise<TAny[]> {
         }
 
         result.push(klass);
-      } catch {
-        continue;
-      }
+      } catch {}
     }
 
     return result;

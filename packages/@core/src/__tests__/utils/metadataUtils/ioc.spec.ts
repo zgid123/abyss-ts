@@ -1,12 +1,12 @@
 import { describe, expect, it, suite } from 'vitest';
 
-import { IoC } from '../../../core/IoC';
 import { INJECTABLE_IDENTITY } from '../../../constants/metadata';
+import { IoC } from '../../../core/IoC';
 import {
-  pushToIoCContainer,
   getFromIoCContainer,
   getInjectableIdentity,
   isExistingInIoCContainer,
+  pushToIoCContainer,
 } from '../../../utils/metadataUtils';
 
 describe('[utils]: metadataUtils - ioc', () => {

@@ -9,5 +9,5 @@ export class Product extends Base {
     type: 'varchar',
     nullable: false,
   })
-  name: string;
+  name!: string;
 }
