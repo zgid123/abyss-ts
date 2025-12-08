@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 
-import { Catch } from '../../decorators/exception';
-import { AbyssalException } from '../../core/AbyssalException';
 import { EXCEPTION_HANDLER_CATCH_CLASS } from '../../constants/metadata';
+import { AbyssalException } from '../../core/AbyssalException';
+import { Catch } from '../../decorators/exception';
 
 describe('[decorators]: exception', () => {
   it('sets metadata for MyController class', () => {

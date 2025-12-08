@@ -1,7 +1,6 @@
-import { getMetadata, setMetadata } from './core';
 import { EXCEPTION_HANDLER_CATCH_CLASS } from '../../constants/metadata';
-
 import type { AbyssalException } from '../../core/AbyssalException';
+import { getMetadata, setMetadata } from './core';
 
 interface ISetExceptionCatchClassMetadataParams {
   exceptionHandler: TAny;

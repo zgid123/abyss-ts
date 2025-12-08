@@ -1,7 +1,7 @@
-import { describe, expect, it, suite, afterEach } from 'vitest';
+import { afterEach, describe, expect, it, suite } from 'vitest';
 
-import { IoC } from '../../core/IoC';
 import { INJECT, INJECTABLE } from '../../constants/metadata';
+import { IoC } from '../../core/IoC';
 import { Inject, Injectable } from '../../decorators/injection';
 
 describe('[decorators]: injection', () => {
@@ -83,7 +83,7 @@ describe('[decorators]: injection', () => {
         class MyService {
           constructor(
             @Inject(InjectService)
-            // biome-ignore lint/correctness/noUnusedPrivateClassMembers: <explanation>
+            // biome-ignore lint/correctness/noUnusedPrivateClassMembers: ignore
             private readonly injectService: InjectService,
           ) {}
         }
@@ -103,10 +103,10 @@ describe('[decorators]: injection', () => {
         class MyService {
           constructor(
             @Inject(InjectService)
-            // biome-ignore lint/correctness/noUnusedPrivateClassMembers: <explanation>
+            // biome-ignore lint/correctness/noUnusedPrivateClassMembers: ignore
             private readonly injectService: InjectService,
             @Inject(AnotherInjectService)
-            // biome-ignore lint/correctness/noUnusedPrivateClassMembers: <explanation>
+            // biome-ignore lint/correctness/noUnusedPrivateClassMembers: ignore
             private readonly anotherInjectService: AnotherInjectService,
           ) {}
         }

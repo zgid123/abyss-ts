@@ -1,9 +1,8 @@
 import { describe, expect, it, suite } from 'vitest';
 
 import { PARAMS } from '../../constants/metadata';
-import { Context } from '../../decorators/context';
-
 import type { AbyssalContext } from '../../core/AbyssalContext';
+import { Context } from '../../decorators/context';
 
 describe('[decorators]: context', () => {
   suite('Context', () => {

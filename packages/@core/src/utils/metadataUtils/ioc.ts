@@ -1,8 +1,7 @@
-import { IoC } from '../../core/IoC';
-import { getMetadata, setMetadata } from './core';
 import { INJECTABLE_IDENTITY } from '../../constants/metadata';
-
-import type { RequiredKeys } from '../../typings';
+import { IoC } from '../../core/IoC';
+import type { TRequiredKeys } from '../../typings';
+import { getMetadata, setMetadata } from './core';
 
 export function getInjectableIdentity(target: TAny): string | symbol {
   if (!['function', 'object'].includes(typeof target)) {
@@ -22,10 +21,10 @@ interface IPushToIoCContainerParams {
 }
 
 export function pushToIoCContainer(
-  params: RequiredKeys<IPushToIoCContainerParams, 'key'>,
+  params: TRequiredKeys<IPushToIoCContainerParams, 'key'>,
 ): void;
 export function pushToIoCContainer(
-  params: RequiredKeys<IPushToIoCContainerParams, 'target'>,
+  params: TRequiredKeys<IPushToIoCContainerParams, 'target'>,
 ): void;
 export function pushToIoCContainer({
   key,

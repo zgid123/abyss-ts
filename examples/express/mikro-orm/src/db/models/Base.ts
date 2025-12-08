@@ -5,7 +5,7 @@ export abstract class Base {
   @PrimaryKey({
     type: 'bigint',
   })
-  id: number;
+  id!: number;
 
   @Property({ type: 'timestamptz', defaultRaw: 'CURRENT_TIMESTAMP' })
   createdAt: Date = new Date();

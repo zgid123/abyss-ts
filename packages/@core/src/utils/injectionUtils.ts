@@ -1,11 +1,11 @@
 import {
-  pushToIoCContainer,
-  getFromIoCContainer,
-  getInjectionMetadata,
-  getInjectableIdentity,
-  getInjectParamMetadata,
   deleteInjectionMetadata,
+  getFromIoCContainer,
+  getInjectableIdentity,
+  getInjectionMetadata,
+  getInjectParamMetadata,
   type IInjectionProps,
+  pushToIoCContainer,
 } from './metadataUtils';
 
 function topologicalGroup(
@@ -65,7 +65,7 @@ function topologicalGroup(
 
       if (visitedAllDependencies) {
         result[level + 1] ||= [];
-        result[level + 1]!.push(injection);
+        (result[level + 1] || []).push(injection);
         removedIndexes.push(i);
 
         visited[target] = {

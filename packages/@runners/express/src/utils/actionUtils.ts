@@ -1,7 +1,6 @@
 import { getActionParamMetadata, type IActionParamProps } from '@abyss.ts/core';
 
 import { asyncStorage } from '../asyncStorage';
-
 import type { IRequest } from '../interface';
 
 function extractData(request: IRequest, param: IActionParamProps): TAny {

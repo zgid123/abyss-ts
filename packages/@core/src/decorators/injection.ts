@@ -1,9 +1,8 @@
+import type { TInjectionScopes } from '../constants/injection';
 import {
   setInjectionMetadata,
   setInjectParamMetadata,
 } from '../utils/metadataUtils';
-
-import type { TInjectionScopes } from '../constants/injection';
 
 interface IInjectableParams {
   scope?: TInjectionScopes;

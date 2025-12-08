@@ -1,14 +1,14 @@
-import pluralize from 'pluralize-esm';
-import { SeedManager } from '@mikro-orm/seeder';
-import { Migrator } from '@mikro-orm/migrations';
-import { PostgreSqlDriver } from '@mikro-orm/postgresql';
 import {
-  defineConfig,
-  UnderscoreNamingStrategy,
   type Constructor,
+  defineConfig,
   type EventSubscriber,
   type MikroORMOptions,
+  UnderscoreNamingStrategy,
 } from '@mikro-orm/core';
+import { Migrator } from '@mikro-orm/migrations';
+import { PostgreSqlDriver } from '@mikro-orm/postgresql';
+import { SeedManager } from '@mikro-orm/seeder';
+import pluralize from 'pluralize-esm';
 
 class MikroNamingStrategy extends UnderscoreNamingStrategy {
   classToTableName(entityName: string, isPlural = true): string {
@@ -49,8 +49,7 @@ function config({
 
   if (dynamicDatabaseName) {
     dbName = `abyss_express_mikro_orm_test_${(
-      new Date().getTime() +
-      parseInt(Math.random().toString().replace('.', ''), 10)
+      Date.now() + parseInt(Math.random().toString().replace('.', ''), 10)
     ).toString()}`;
   }
 

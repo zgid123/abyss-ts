@@ -1,11 +1,9 @@
-import { defineConfig } from 'tsup';
+import { defineConfig } from 'tsdown';
 
 export default defineConfig({
   dts: true,
   clean: true,
   outDir: 'lib',
   format: 'esm',
-  splitting: false,
-  external: ['vitest'],
   entry: ['src/index.ts'],
 });

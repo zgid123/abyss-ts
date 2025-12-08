@@ -1,6 +1,5 @@
 import { Injectable } from '@abyss.ts/express-runner';
 import { InjectRepository } from '@abyss.ts/mikro-orm';
-
 import type { EntityRepository } from '@mikro-orm/postgresql';
 
 import { Product } from '../../../db/models/Product';

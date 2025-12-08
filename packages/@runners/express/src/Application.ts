@@ -1,20 +1,19 @@
-import { nanoid } from 'nanoid';
+import { createServer as createHttpServer } from 'node:http';
+import {
+  AbyssalApplication,
+  AbyssalContext,
+  type AbyssalException,
+  getExceptionCatchClassMetadata,
+} from '@abyss.ts/core';
 import bodyParser from 'body-parser';
 import detectPort from 'detect-port';
-import { createServer as createHttpServer } from 'http';
 import express, { type Express, type Request, type Response } from 'express';
-import {
-  AbyssalContext,
-  AbyssalApplication,
-  getExceptionCatchClassMetadata,
-  type AbyssalException,
-} from '@abyss.ts/core';
+import { nanoid } from 'nanoid';
 
 import { asyncStorage } from './asyncStorage';
-import { mapRoutes } from './utils/routeUtils';
 import { BaseExceptionHandler } from './BaseExceptionHandler';
-
 import type { INext, IRequest, IResponse } from './interface';
+import { mapRoutes } from './utils/routeUtils';
 
 export class ExpressApplication extends AbyssalApplication<ExpressApplication> {
   #express: Express;
@@ -31,11 +30,11 @@ export class ExpressApplication extends AbyssalApplication<ExpressApplication> {
   }
 
   public static create(): ExpressApplication {
-    if (!this.#app) {
-      this.#app = new this();
+    if (!ExpressApplication.#app) {
+      ExpressApplication.#app = new ExpressApplication();
     }
 
-    return this.#app._instance;
+    return ExpressApplication.#app._instance;
   }
 
   public useBodyParser(): ExpressApplication {
@@ -122,8 +121,8 @@ export class ExpressApplication extends AbyssalApplication<ExpressApplication> {
         (err: AbyssalException, _req: Request, _res: Response, next: INext) => {
           const ctx = asyncStorage.get();
 
-          if (!catchClass || err instanceof catchClass) {
-            exceptionHandler.catch(err, ctx!, next);
+          if (ctx && (!catchClass || err instanceof catchClass)) {
+            exceptionHandler.catch(err, ctx, next);
           } else {
             next(err);
           }
@@ -135,7 +134,11 @@ export class ExpressApplication extends AbyssalApplication<ExpressApplication> {
       (err: AbyssalException, _req: Request, _res: Response, next: INext) => {
         const ctx = asyncStorage.get();
 
-        this.#baseExceptionHandler.catch(err, ctx!, next);
+        if (!ctx) {
+          return next(err);
+        }
+
+        this.#baseExceptionHandler.catch(err, ctx, next);
       },
     );
   }

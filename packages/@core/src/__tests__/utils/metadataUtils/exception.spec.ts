@@ -1,7 +1,7 @@
 import { describe, expect, it, suite } from 'vitest';
 
-import { AbyssalException } from '../../../core/AbyssalException';
 import { EXCEPTION_HANDLER_CATCH_CLASS } from '../../../constants/metadata';
+import { AbyssalException } from '../../../core/AbyssalException';
 import {
   getExceptionCatchClassMetadata,
   setExceptionCatchClassMetadata,

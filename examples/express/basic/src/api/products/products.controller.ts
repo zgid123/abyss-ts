@@ -1,9 +1,9 @@
 import {
-  Get,
-  Query,
-  Inject,
-  Request,
   Controller,
+  Get,
+  Inject,
+  Query,
+  Request,
 } from '@abyss.ts/express-runner';
 
 import { FilterService } from './services/FilterService';

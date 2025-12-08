@@ -1,6 +1,5 @@
-import { RequestContext, type MikroORM } from '@mikro-orm/core';
-
 import type { AbyssalContext, IAbyssalMiddleware } from '@abyss.ts/core';
+import { type MikroORM, RequestContext } from '@mikro-orm/core';
 
 import { InjectOrm } from './decorators';
 

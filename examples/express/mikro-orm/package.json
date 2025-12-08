@@ -14,15 +14,15 @@
   "dependencies": {
     "@abyss.ts/express-runner": "workspace:^",
     "@abyss.ts/mikro-orm": "workspace:^",
-    "@mikro-orm/core": "^6.2.9",
-    "@mikro-orm/migrations": "^6.2.9",
-    "@mikro-orm/postgresql": "^6.2.9",
-    "@mikro-orm/seeder": "^6.2.9",
+    "@mikro-orm/core": "^6.6.2",
+    "@mikro-orm/migrations": "^6.6.2",
+    "@mikro-orm/postgresql": "^6.6.2",
+    "@mikro-orm/seeder": "^6.6.2",
     "pluralize-esm": "^9.0.5"
   },
   "devDependencies": {
-    "@mikro-orm/cli": "^6.2.9",
-    "tsx": "^4.16.2"
+    "@mikro-orm/cli": "^6.6.2",
+    "tsx": "^4.16.5"
   },
   "mikro-orm": {
     "useTsNode": true

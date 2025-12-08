@@ -1,16 +1,15 @@
-import { Router } from 'express';
 import {
-  combine,
   AbyssalException,
-  getFromIoCContainer,
-  getControllerMetadata,
-  getInjectParamMetadata,
+  combine,
   getControllerActionMetadata,
+  getControllerMetadata,
+  getFromIoCContainer,
+  getInjectParamMetadata,
 } from '@abyss.ts/core';
-
-import { mapParameters } from './actionUtils';
+import { Router } from 'express';
 
 import type { IRequest } from '../interface';
+import { mapParameters } from './actionUtils';
 
 export function mapRoutes(controllers: TAny[]): [string[], Router] {
   console.log('Initializing routes...');
